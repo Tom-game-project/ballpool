@@ -2,7 +2,7 @@
 
 ## 気体分子シミュレーションソフト
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fWzYb2FtJ6A?si=orzaX7RVf1NFXKQg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[!['粒子シミュレーション']('https://i.ytimg.com/vi/fWzYb2FtJ6A/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB3gOAAuADigIMCAAQARh_IBMoEzAP&rs=AOn4CLDlj0b2silFyfIcqpcb5a7zts1A9Q')]('https://www.youtube.com/watch?v=fWzYb2FtJ6A')
 
 mol.pyを使用するためにはopen-cvが必要です。
 
