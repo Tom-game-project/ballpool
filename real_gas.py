@@ -188,10 +188,8 @@ class mols:
         b = (-1*v2)*n2/n2.abspow2
         v1x: vector2D = -1*a*n1
         v2x: vector2D = -1*b*n2
-        k = (mol1.m*v1x+mol2.m*v2x)/(mol1.m+mol2.m)
-        l = (v2x-v1x)/(self.e*(mol1.m+mol2.m))
-        v1xd: vector2D = k+mol2.m*l
-        v2xd: vector2D = k-mol1.m*l
+        v1xd: vector2D = ((1+self.e)*mol2.m*v2x + (mol1.m-self.e*mol2.m)*v1x)/(mol1.m+mol2.m)
+        v2xd: vector2D = ((1+self.e)*mol1.m*v1x + (mol2.m-self.e*mol1.m)*v2x)/(mol1.m+mol2.m)
         v1d = v1+a*n1+v1xd
         v2d = v2+b*n2+v2xd
         return v1d, v2d

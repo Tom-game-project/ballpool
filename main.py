@@ -217,10 +217,8 @@ class mols:
                 if n.abspow2 <= i.r**2 and ((pv-j.p1)*n)*((pv-j.p1)*n) > 0:
                     yield i,j,n
                     break
+
     def pair_next_v(self, mol1: "mol", mol2: "mol"):
-        """
-        pair_next_vの改善版
-        """
         v1: vector2D = vector2D(mol1.sx, mol1.sy)
         v2: vector2D = vector2D(mol2.sx, mol2.sy)
         n1 = mol1.n(mol2)
@@ -229,13 +227,12 @@ class mols:
         b = (-1*v2)*n2/n2.abspow2
         v1x: vector2D = -1*a*n1
         v2x: vector2D = -1*b*n2
-        v1xd: vector2D = ((1+self.e)*mol2.m*v2x +
-                        (mol1.m-self.e*mol2.m)*v1x)/(mol1.m+mol2.m)
-        v2xd: vector2D = ((1+self.e)*mol1.m*v1x +
-                        (mol2.m-self.e*mol1.m)*v2x)/(mol1.m+mol2.m)
+        v1xd: vector2D = ((1+self.e)*mol2.m*v2x + (mol1.m-self.e*mol2.m)*v1x)/(mol1.m+mol2.m)
+        v2xd: vector2D = ((1+self.e)*mol1.m*v1x + (mol2.m-self.e*mol1.m)*v2x)/(mol1.m+mol2.m)
         v1d = v1+a*n1+v1xd
         v2d = v2+b*n2+v2xd
         return v1d, v2d
+
     def pair_position_corection(self,mol1:"mol",mol2:"mol")->"vector2D":
         """
         座標を補正する
