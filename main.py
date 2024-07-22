@@ -8,14 +8,14 @@ import random
 class vector2D:
     """
     ## 簡易的なベクトル計算用モジュール
-    python```
-v = vector2D(1, 1)
-print(
-    v*vector2D(-1, 1),
-    2*v*2+v,
-    v+vector2D(1, 2),
-    v-vector2D(1, 2),
-)
+    ```python
+    v = vector2D(1, 1)
+    print(
+        v*vector2D(-1, 1),
+        2*v*2+v,
+        v+vector2D(1, 2),
+        v-vector2D(1, 2),
+    )
     ```
     """
 
