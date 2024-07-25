@@ -59,7 +59,7 @@ class vector2D:
 
 class mol:
 
-    def __init__(self, x, y, r, sx, sy, m) -> None:
+    def __init__(self, x, y, r, sx, sy, m, color = "black") -> None:
         self._x = x
         self._y = y
         self._r = r
@@ -68,6 +68,7 @@ class mol:
         self.nextsx = sx
         self.nextsy = sy
         self.m = m
+        self.color = color
 
     @property
     def x(self):
@@ -245,8 +246,8 @@ class GasBox(tkinter.Canvas):
     def stamp(self, x, y, r, color="black"):
         self.create_oval(x-r, y-r, x+r, y+r, fill=color)
 
-    def mol_stamp(self, mol: "mol", color="black"):
-        self.stamp(mol.x, mol.y, mol.r, color=color)
+    def mol_stamp(self, mol_: "mol"):
+        self.stamp(mol_.x, mol_.y, mol_.r, color=mol_.color)
 
 
 def random_direction(a=1):
@@ -272,6 +273,6 @@ Mols.add_wall(wall(600, 600, 600, 0))
 Mols.add_wall(wall(600, 0, 0, 0))
 for i in range(4):
     for j in range(4):
-        Mols.add_mol(mol(i*130+60, j*130+60, 30, *random_direction(a=2), 1))
+        Mols.add_mol(mol(i*130+60, j*130+60, 30, *random_direction(a=2), 1, color = ["#ff0000","#00ff00","#0000ff"][(i + j) % 3]))
 canvas.after(0, loop)
 root.mainloop()
