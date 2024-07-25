@@ -68,7 +68,7 @@ class mol:
         self.nextsx = sx
         self.nextsy = sy
         self.m = m
-        self.color = color
+        self._color = color
 
     @property
     def x(self):
@@ -97,6 +97,10 @@ class mol:
     @property
     def position_vector(self):
         return vector2D(self.x, self.y)
+
+    @property
+    def color(self):
+        return self._color
 
     def touch_with(self, obj: "mol") -> bool:
         return (self.x-obj.x)**2+(self.y-obj.y)**2 <= (self.r + obj.r)**2
