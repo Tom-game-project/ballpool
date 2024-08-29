@@ -1,0 +1,13 @@
+[project]
+name = "mol-simulation"
+version = "0.1.0"
+description = "Particle Simulator Software"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "opencv-python"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
