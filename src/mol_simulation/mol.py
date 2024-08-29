@@ -2,9 +2,8 @@
 import tkinter
 import math
 from typing import Generator
-import random
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 import cv2
 
 import os
