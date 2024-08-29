@@ -18,6 +18,7 @@ def loop():
     for i in Mols:
         canvas.mol_stamp(i)
     canvas.after(10, loop)
+
 canvas = GasBox(root, width=600, height=600)
 canvas.pack()
 Mols = mols(mol_e=0.99)
