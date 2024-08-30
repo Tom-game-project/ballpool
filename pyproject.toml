@@ -1,5 +1,5 @@
 [project]
-name = "mol-simulation"
+name = "ballpool"
 version = "0.0.0"
 description = "Particle Simulator Software"
 readme = "README.md"
