@@ -31,5 +31,3 @@ for i in range(4):
         Mols.add_mol(mol(i*130+60, j*130+60, 30, *random_direction(a=2), 1, color = ["#ff0000","#00ff00","#0000ff"][(i + j) % 3]))
 canvas.after(0, loop)
 root.mainloop()
-
-print("hello")
