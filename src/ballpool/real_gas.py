@@ -1,6 +1,6 @@
 import tkinter
 from typing import Generator
-from mol_simulation.vector2d import vector2D
+from ballpool.vector2d import vector2D
 
 class mol:
 

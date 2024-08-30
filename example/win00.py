@@ -2,7 +2,7 @@ import random
 import tkinter
 import math
 
-from mol_simulation.real_gas import GasBox,mols,wall,mol
+from ballpool.real_gas import GasBox,mols,wall,mol
 
 def random_direction(a=1):
     r = random.random()

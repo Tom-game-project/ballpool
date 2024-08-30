@@ -2,7 +2,7 @@ import os
 from PIL import Image, ImageDraw
 import cv2
 
-from mol_simulation.real_gas import mols
+from ballpool.real_gas import mols
 
 class GasBox_video:
 

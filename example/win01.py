@@ -1,4 +1,4 @@
-from mol_simulation.real_gas import GasBox,mols,wall,mol
+from ballpool.real_gas import GasBox,mols,wall,mol
 import random
 import math
 import tkinter

@@ -1,5 +1,5 @@
-from mol_simulation.mol import GasBox_video
-from mol_simulation.real_gas import mols, wall, mol
+from ballpool.mol import GasBox_video
+from ballpool.real_gas import mols, wall, mol
 
 canvas = GasBox_video(width=600, height=600,image_folder="img",repeat=1000)
 canvas.delete_image_files()
