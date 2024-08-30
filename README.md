@@ -1,4 +1,4 @@
-# mol_simulation
+# Ball Pool
 
 simple molecular simulation
 
