@@ -1,4 +1,4 @@
-from ballpool.mol import GasBox_video
+from ballpool.mov import GasBox_video
 from ballpool.real_gas import mols, wall, mol
 
 canvas = GasBox_video(width=600, height=600,image_folder="img",repeat=1000)
