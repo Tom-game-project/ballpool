@@ -5,7 +5,7 @@ simple molecular simulation
 ## Install
 
 ```bash 
-pip install mol_simulation
+pip install ballpool
 ```
 
 `youtube`
