@@ -1,10 +1,11 @@
-from mol_simulation.mol import GasBox_video,mols,wall,mol
+from mol_simulation.mol import GasBox_video
+from mol_simulation.real_gas import mols, wall, mol
 
-canvas = GasBox_video(width=600, height=600,image_folder="image",repeat=1000)
+canvas = GasBox_video(width=600, height=600,image_folder="img",repeat=1000)
 canvas.delete_image_files()
 
 Mols = mols(mol_e=1)
-#壁の設定
+# setting walls
 Mols.add_wall(
     wall(0, 0, 0, 600)
 )

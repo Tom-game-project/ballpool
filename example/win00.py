@@ -2,15 +2,13 @@ import random
 import tkinter
 import math
 
-from mol_simulation.mol import GasBox,mols,wall,mol
+from mol_simulation.real_gas import GasBox,mols,wall,mol
 
 def random_direction(a=1):
     r = random.random()
     d = r*2*math.pi
     return a*math.cos(d), a*math.sin(d)
 
-root = tkinter.Tk()
-root.title("実在気体")
 def loop():
     canvas.delete("all")
     Mols.calc()
@@ -19,6 +17,8 @@ def loop():
         canvas.mol_stamp(i)
     canvas.after(10, loop)
 
+root = tkinter.Tk()
+root.title("real gas")
 canvas = GasBox(root, width=600, height=600)
 canvas.pack()
 Mols = mols(mol_e=0.99)
