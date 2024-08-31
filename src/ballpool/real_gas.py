@@ -36,7 +36,7 @@ class mol:
         return self._sy
 
     @property
-    def vector_v(self) -> "vector2D":
+    def vector_v(self) -> vector2D:
         return vector2D(self.sx, self.sy)
 
     @property
@@ -48,25 +48,25 @@ class mol:
         return self._color
 
     def touch_with(self, obj: "mol") -> bool:
-        return (self.x-obj.x)**2+(self.y-obj.y)**2 <= (self.r + obj.r)**2
+        return (self.x - obj.x) ** 2 + (self.y - obj.y) ** 2 <= (self.r + obj.r) ** 2
 
-    def n(self, obj) -> "vector2D":
+    def n(self, obj) -> vector2D:
         if type(obj) is mol:
             return vector2D(self.x, self.y) - vector2D(obj.x, obj.y)
         elif type(obj) is wall:
             o: vector2D = vector2D(self.x, self.y)
-            w12 = obj.p2-obj.p1
+            w12 = obj.p2 - obj.p1
             ao = o-obj.p1
-            a = w12*ao/w12.abspow2
-            n = ao-a*w12
+            a = w12 * ao / w12.abspow2
+            n = ao - a * w12
             return n
         else:
             raise BaseException("型エラー")
 
     def inner_product(self, obj: "mol") -> float:
-        return (-1*vector2D(self.sx, self.sy))*self.n(obj)
+        return (-1 * vector2D(self.sx, self.sy)) * self.n(obj)
 
-    def set_next_v(self, nextv: "vector2D"):
+    def set_next_v(self, nextv: vector2D):
         self.nextsx = nextv.x
         self.nextsy = nextv.y
 
@@ -78,7 +78,7 @@ class mol:
         self._x += self.sx
         self._y += self.sy
 
-    def position_corection(self, dp: "vector2D"):
+    def position_corection(self, dp: vector2D):
         self._x += dp.x
         self._y += dp.y
 
@@ -90,26 +90,26 @@ class wall:
         self._p2: vector2D = vector2D(x2, y2)
 
     @property
-    def p1(self) -> "vector2D":
+    def p1(self) -> vector2D:
         return self._p1
 
     @property
-    def p2(self) -> "vector2D":
+    def p2(self) -> vector2D:
         return self._p2
 
 
 class mols:
 
-    def __init__(self, wall_e=1, mol_e=1) -> None:
+    def __init__(self, wall_e = 1, mol_e = 1) -> None:
         self.mols_list: list[mol] = []
         self.walls_list: list[wall] = []
         self.e = mol_e
         self.wall_e = wall_e
 
-    def add_mol(self, mol: "mol") -> None:
+    def add_mol(self, mol: mol) -> None:
         self.mols_list.append(mol)
 
-    def add_wall(self, wall: "wall") -> None:
+    def add_wall(self, wall: wall) -> None:
         self.walls_list.append(wall)
 
     def touch_list(self) -> Generator:
@@ -129,38 +129,38 @@ class mols:
                     yield i, j, n
                     break
 
-    def pair_next_v(self, mol1: "mol", mol2: "mol") -> tuple[vector2D, vector2D]:
+    def pair_next_v(self, mol1: mol, mol2: mol) -> tuple[vector2D, vector2D]:
         v1: vector2D = vector2D(mol1.sx, mol1.sy)
         v2: vector2D = vector2D(mol2.sx, mol2.sy)
         n1 = mol1.n(mol2)
         n2 = mol2.n(mol1)
-        a = (-1*v1)*n1/n1.abspow2
-        b = (-1*v2)*n2/n2.abspow2
-        v1x: vector2D = -1*a*n1
-        v2x: vector2D = -1*b*n2
-        v1xd: vector2D = ((1+self.e)*mol2.m*v2x + (mol1.m-self.e*mol2.m)*v1x)/(mol1.m+mol2.m)
-        v2xd: vector2D = ((1+self.e)*mol1.m*v1x + (mol2.m-self.e*mol1.m)*v2x)/(mol1.m+mol2.m)
-        v1d = v1+a*n1+v1xd
-        v2d = v2+b*n2+v2xd
+        a = (-1 * v1) * n1 / n1.abspow2
+        b = (-1 * v2) * n2 / n2.abspow2
+        v1x: vector2D = -1 * a * n1
+        v2x: vector2D = -1 * b * n2
+        v1xd: vector2D = ((1 + self.e) * mol2.m * v2x + (mol1.m - self.e * mol2.m) * v1x) / (mol1.m + mol2.m)
+        v2xd: vector2D = ((1 + self.e) * mol1.m * v1x + (mol2.m - self.e * mol1.m) * v2x) / (mol1.m + mol2.m)
+        v1d = v1 + a * n1 + v1xd
+        v2d = v2 + b * n2 + v2xd
         return v1d, v2d
 
-    def pair_position_corection(self, mol1: "mol", mol2: "mol") -> "vector2D":
+    def pair_position_corection(self, mol1: mol, mol2: mol) -> vector2D:
         p1: vector2D = mol1.position_vector
         p2: vector2D = mol2.position_vector
         p12: vector2D = p2-p1
-        dp: vector2D = ((-1*(mol1.r+mol2.r-abs(p12)))/(2*abs(p12)))*p12
+        dp: vector2D = ((-1 * (mol1.r + mol2.r - abs(p12))) / (2 * abs(p12))) * p12
         mol1.position_corection(dp)
-        mol2.position_corection(-1*dp)
+        mol2.position_corection(-1 * dp)
 
-    def pair_position_corection_wall(self, mol: "mol", wall: "wall", n: "vector2D"):
+    def pair_position_corection_wall(self, mol: mol, wall: wall, n: vector2D):
         an = abs(n)
-        dp: vector2D = ((mol.r-an)/an)*n
+        dp: vector2D = ((mol.r - an) / an) * n
         mol.position_corection(dp)
 
-    def wall_next_v(self, mol1: "mol", wall1: "wall", n: "vector2D") -> "vector2D":
+    def wall_next_v(self, mol1: mol, wall1: wall, n: vector2D) -> vector2D:
         molv = mol1.vector_v
-        a = (-1*molv)*n/n.abspow2
-        nextv: vector2D = molv+(1+self.wall_e)*a*n
+        a = (-1 * molv) * n / n.abspow2
+        nextv: vector2D = molv + (1 + self.wall_e) * a * n
         return nextv
 
     def calc(self):
@@ -185,17 +185,17 @@ class mols:
 
 class GasBox(tkinter.Canvas):
 
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, kwargs)
 
     def delete_all(self):
         self.delete("all")
 
-    def stamp(self, x, y, r, color="black"):
-        self.create_oval(x - r, y - r, x + r, y + r,fill = color)
+    def stamp(self, x, y, r, color = "black"):
+        self.create_oval(x - r, y - r, x + r, y + r, fill = color)
 
-    def mol_stamp(self,mol:"mol"):
+    def mol_stamp(self, mol: mol):
         self.stamp(mol.x, mol.y, mol.r, color = mol.color)
 
-    def wall_stamp(self,wall:wall):
+    def wall_stamp(self, wall: wall):
         self.create_line(wall.p1.x, wall.p1.y, wall.p2.x, wall.p2.y)
