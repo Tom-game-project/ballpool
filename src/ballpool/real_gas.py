@@ -56,7 +56,7 @@ class mol:
         elif type(obj) is wall:
             o: vector2D = vector2D(self.x, self.y)
             w12 = obj.p2 - obj.p1
-            ao = o-obj.p1
+            ao = o - obj.p1
             a = w12 * ao / w12.abspow2
             n = ao - a * w12
             return n
@@ -147,7 +147,7 @@ class mols:
     def pair_position_corection(self, mol1: mol, mol2: mol) -> vector2D:
         p1: vector2D = mol1.position_vector
         p2: vector2D = mol2.position_vector
-        p12: vector2D = p2-p1
+        p12: vector2D = p2 - p1
         dp: vector2D = ((-1 * (mol1.r + mol2.r - abs(p12))) / (2 * abs(p12))) * p12
         mol1.position_corection(dp)
         mol2.position_corection(-1 * dp)

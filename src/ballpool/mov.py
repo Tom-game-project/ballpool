@@ -13,7 +13,7 @@ class GasBox_video:
         self.color = color
         self.repeat = repeat
 
-    def draw_mols(self,mols:"mols",i):
+    def draw_mols(self, mols: mols, i):
         image = Image.new("RGB", (self.width, self.height), self.color)
         for j in mols:
             dr = ImageDraw.Draw(image)
@@ -21,7 +21,7 @@ class GasBox_video:
         filename = os.path.join(self.folder,str(i).zfill(4))  # 右寄せ0詰めで連番のファイル名を作成
         image.save(filename + '.png', quality = 95)
 
-    def calc(self, mols:"mols"):
+    def calc(self, mols: mols):
         for i in range(self.repeat):
             mols.calc()
             mols.change()
